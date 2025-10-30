@@ -1,19 +1,29 @@
+// app/(auth)/_layout.jsx
 import { Stack } from "expo-router";
 
 export default function AuthLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: true,
-        headerTitle: "",
-        headerShadowVisible: false, // remove sombra (Android/iOS)
-        headerTransparent: false,
-        headerStyle: {
-          backgroundColor: "#C62828", // vermelho do header
-        },
+        headerShown: false, 
       }}
     >
-      <Stack.Screen name="login" />
+
+      <Stack.Screen
+        name="login"
+        options={{
+          headerShown: true,
+          headerTitle: "",
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: "#C62828",
+          },
+        }}
+      />
+
+      
+      <Stack.Screen name="register" options={{ headerShown: false }} />
+
     </Stack>
   );
 }
