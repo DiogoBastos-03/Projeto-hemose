@@ -1,3 +1,4 @@
+// app/(tabs)/index.tsx
 import {
   View,
   Text,
@@ -6,8 +7,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 
 export default function Index() {
+  const router = useRouter();
+
   const services = [
     { id: "1", label: "Agendar doação" },
     { id: "2", label: "Doação de medula" },
@@ -15,6 +19,16 @@ export default function Index() {
     { id: "4", label: "Histórico de doação" },
     { id: "5", label: "Agenda campanha" },
   ];
+
+  function handleServicePress(serviceId: string) {
+    if (serviceId === "1") {
+      // Abre a página de pré-triagem
+      router.push("/(tabs)/PreTriagem");
+    } else {
+      // Futuramente você pode colocar outras ações aqui
+      console.log("Serviço ainda não implementado:", serviceId);
+    }
+  }
 
   return (
     <View style={style.body}>
@@ -31,7 +45,7 @@ export default function Index() {
             style={style.cards}
           >
             <Text style={style.cardtitle}>23</Text>
-            <Text style={style.cardText}>dias para sua proxima doação</Text>
+            <Text style={style.cardText}>dias para sua próxima doação</Text>
           </LinearGradient>
         </View>
 
@@ -74,9 +88,7 @@ export default function Index() {
             <TouchableOpacity
               activeOpacity={0.8}
               style={style.serviceItem}
-              onPress={() => {
-                //isso é pra depois quando eu for colocar uma ação no clique
-              }}
+              onPress={() => handleServicePress(item.id)}
             >
               <View style={style.serviceCard} />
               <Text style={style.serviceLabel} numberOfLines={2}>
@@ -100,7 +112,7 @@ const style = StyleSheet.create({
   content: {
     width: "100%",
     paddingTop: 0,
-    paddingBottom: 10 ,
+    paddingBottom: 10,
     padding: 50,
   },
 
@@ -185,6 +197,6 @@ const style = StyleSheet.create({
   },
   services: {
     paddingTop: 0,
-    padding : 10
+    padding: 10,
   },
 });
